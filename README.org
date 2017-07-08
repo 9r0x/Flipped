@@ -1,5 +1,3 @@
-#+TITLE: Flipped Front End
-#+Author: Grox Ni
 * Description
 This is an platform for single dogs
 * Installation
