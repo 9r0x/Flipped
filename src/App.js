@@ -9,11 +9,11 @@ class App extends Component {
         super();
         this.state={
             data : [],
-            result:[],
             getData: 0,
             heartdisP: "none",
             moodColor: "#000000",
-            loveP: false
+            loveP: false,
+            loved: false
         };
     }
 
@@ -56,14 +56,18 @@ class App extends Component {
         this.setState({moodColor:this.rgbToHex(Math.round(255*D),0,Math.round(255*(1-D)))});
     },500);}
 
+    changeLoveP(c){
+        if (c.fluency>90 && c.overall>95){this.setState({loveP:true,loved:true});};
+        setTimeout(()=>{this.setState({loveP:false})},1000);}
+
     handleAddResult(myResult){
-        this.setState({result:myResult},()=>{console.log(this.state.result)});
+        this.setState({result:myResult},this.changeLoveP(myResult));
     }
 
     render() {
         let url='http://i2.kiimg.com/1949/133536db7cf69048.gif';
         var divStyle;
-        if (this.state.hover) {
+        if (this.state.loved) {
             divStyle =
                 {
                     backgroundImage: 'url('+url+')',
