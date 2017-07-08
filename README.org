@@ -4,3 +4,12 @@ A platform designed for single dogs
 #+BEGIN_SRC sh
 yarn install
 #+END_SRC
+* Run live
+#+BEGIN_SRC sh
+yarn start
+#+END_SRC
+* Build for distribution
+#+BEGIN_SRC sh
+yarn build
+#+END_SRC
+- The built distribution is under ./dist ::
