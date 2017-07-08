@@ -9,7 +9,7 @@ class App extends Component {
         super();
         this.state={
             data : [],
-            getData: 0,
+            datab : [],
             heartdisP: "none",
             moodColor: "#000000",
             loveP: false,
@@ -17,7 +17,7 @@ class App extends Component {
         };
     }
 
-    getTodos(){
+    getData(){
         $.ajax(
             {
                 url: 'http://flipped.adolphlwq.xyz/data/heartbeat?limit=200',
@@ -33,6 +33,21 @@ class App extends Component {
             });
     }
 
+    getDatab(){
+        $.ajax(
+            {
+                url: 'http://flipped.adolphlwq.xyz/data/heartstrength?limit=200',
+                dataType: 'json',
+                cache: false,
+                success: function(data){
+                    let hearts = data.message;
+                    this.setState({datab : hearts.map(heart => heart.heart_strength).reverse()});
+                }.bind(this),
+                error:function(xhr,status,err){
+                    console.log(err);
+                }
+            });
+    }
 
     getR(min, max) {
         return Math.random() * (max - min) + min;
@@ -47,14 +62,10 @@ class App extends Component {
         return "#" + this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b);
     }
     componentDidMount(){setInterval(()=>{
-        this.getTodos();
-       // let data = this.state.data.slice();
-        // let D = (this.state.getData+50.0)/100;
-        let D = 0.5;
-        // data.push(this.state.getData);
-        // if(data.length>10) {data.splice(0,1);}
-        this.setState({moodColor:this.rgbToHex(Math.round(255*D),0,Math.round(255*(1-D)))});
-    },500);}
+        this.getData();this.getDatab();
+        // let D=0.7;
+        // this.setState({moodColor:this.rgbToHex(Math.round(255*D),0,Math.round(255*(1-D)))});
+    },50);}
 
     changeLoveP(c){
         if (c.fluency>90 && c.overall>95){this.setState({loveP:true,loved:true});};
@@ -78,7 +89,8 @@ class App extends Component {
             <div  style={divStyle}>
               <h1 className="page-header">Hello,single dog! <small>This is a flipped website!</small></h1>
               <div className="text-center">
-                <SparkL data={this.state.data} loveP={this.state.loveP} moodColor={this.state.moodColor}/>
+                <SparkL data={this.state.data} loveP={this.state.loveP} color={'#BC607C'}/>
+                <SparkL data={this.state.datab} loveP={this.state.loveP} color={'#6A4F8F'}/>
               </div>
               < LiuLiShuo addResult={this.handleAddResult.bind(this)} />
             </div>
