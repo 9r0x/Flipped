@@ -12,4 +12,4 @@ yarn start
 #+BEGIN_SRC sh
 yarn build
 #+END_SRC
-- The built distribution is under ./dist ::
+- The built distribution is under ./build ::
