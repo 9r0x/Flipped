@@ -87,7 +87,7 @@ class App extends Component {
         }
         return (
             <div  style={divStyle}>
-              <h1 className="page-header">Hello,single dog! <small>This is a flipped website!</small></h1>
+              <h1 className="page-header">Flipped! <small>怦然心动？</small></h1>
               <div className="text-center">
                 <SparkL data={this.state.data} loveP={this.state.loveP} color={'#BC607C'}/>
                 <SparkL data={this.state.datab} loveP={this.state.loveP} color={'#6A4F8F'}/>
