@@ -1,5 +1,5 @@
 * Description
-This is an platform for single dogs
+A platform designed for single dogs
 * Installation
 #+BEGIN_SRC sh
 yarn install
