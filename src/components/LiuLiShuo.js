@@ -132,10 +132,10 @@ class LiuLishuo extends Component {
         </button>
         {this.renderResult()}
         {this.renderAudio()}
-        <pre>{qType.charAt(0).toUpperCase() + qType.slice(1)}: {qText} </pre>
       </div>
     );
   }
 }
 
 export default LiuLishuo;
+
